@@ -741,6 +741,7 @@ dependencies = [
     { name = "google-genai" },
     { name = "langchain" },
     { name = "langgraph" },
+    { name = "pydantic" },
 ]
 
 [package.dev-dependencies]
@@ -754,6 +755,7 @@ requires-dist = [
     { name = "google-genai", specifier = ">=2.31.0" },
     { name = "langchain", specifier = ">=1.4,<1.5" },
     { name = "langgraph", specifier = ">=1.2,<1.3" },
+    { name = "pydantic", specifier = ">=2.14.1" },
 ]
 
 [package.metadata.requires-dev]
