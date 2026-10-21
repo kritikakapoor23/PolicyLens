@@ -17,10 +17,12 @@ Insurance policies are long PDFs full of conditions: waiting periods, exclusions
 - Project setup with pinned dependencies (Python 3.12, `uv`)
 - Streaming LLM wrapper: timing, token counts, retries, clean errors (`src/policylens/llm.py`)
 - Hand-written tool-calling loop with a calculator and a stub policy search (`src/policylens/agent_loop.py`)
+- Structured extraction with Pydantic validation and retry on invalid output (`src/policylens/structured.py`)
+- Temperature experiment: on a clear snippet, extraction gave identical output across 5 runs at temperature 0.0 and 1.0 (`evals/temperature_experiment.py`)
 
 ## Next
 
-Load real policy documents and search them (replacing the stub policy search).
+Load real policy documents and search them, replacing the stub policy search.
 
 ## Run it
 
@@ -30,4 +32,6 @@ Needs a Gemini API key in the `GEMINI_API_KEY` environment variable. Never commi
 uv sync
 uv run python -m policylens.llm
 uv run python -m policylens.agent_loop
+uv run python -m policylens.structured
+uv run python evals/temperature_experiment.py
 ```
