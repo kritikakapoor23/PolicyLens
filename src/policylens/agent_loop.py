@@ -55,15 +55,10 @@ def _run_tool(name: str, args: dict | None) -> dict:
 
 def run_agent(question: str, client=None) -> str:
     client = client or _get_client()
-    config = types.GenerateContentConfig(
-        tools=list(TOOLS.values()),
-        automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
-    )
+    config = types.GenerateContentConfig(tools=list(TOOLS.values()), automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),)
     contents = [types.Content(role="user", parts=[types.Part.from_text(text=question)])]
     for step in range(1, MAX_STEPS + 1):
-        response = client.models.generate_content(
-            model=MODEL, contents=contents, config=config
-        )
+        response = client.models.generate_content(model=MODEL, contents=contents, config=config)
         calls = response.function_calls
         if not calls:
             return response.text
@@ -73,9 +68,7 @@ def run_agent(question: str, client=None) -> str:
             print(f"[step {step}] model wants {call.name}({call.args})")
             result = _run_tool(call.name, call.args)
             print(f"[step {step}] tool returned {result}")
-            parts.append(
-                types.Part.from_function_response(name=call.name, response=result)
-            )
+            parts.append(types.Part.from_function_response(name=call.name, response=result))
         contents.append(types.Content(role="user", parts=parts))
     raise LLMError(f"no final answer after {MAX_STEPS} steps")
 
@@ -86,7 +79,6 @@ def main() -> None:
         print(run_agent(question))
     except (LLMError, errors.APIError) as exc:
         sys.exit(f"Error: {exc}")
-
 
 if __name__ == "__main__":
     main()

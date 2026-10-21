@@ -10,7 +10,10 @@ TIMEOUT_MS = 60_000
 
 def main() -> None:
     if not os.environ.get("GEMINI_API_KEY"):
-        print("Error: GEMINI_API_KEY is not set. Add it as a Codespaces secret and restart.", file=sys.stderr)
+        print(
+            "Error: GEMINI_API_KEY is not set. Add it as a Codespaces secret and restart.",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     client = genai.Client(http_options=types.HttpOptions(timeout=TIMEOUT_MS))
