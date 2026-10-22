@@ -19,6 +19,11 @@ Insurance policies are long PDFs full of conditions: waiting periods, exclusions
 - Hand-written tool-calling loop with a calculator and a stub policy search (`src/policylens/agent_loop.py`)
 - Structured extraction with Pydantic validation and retry on invalid output (`src/policylens/structured.py`)
 - Temperature experiment: on a clear snippet, extraction gave identical output across 5 runs at temperature 0.0 and 1.0 (`evals/temperature_experiment.py`)
+- The same tool loop rebuilt with LangChain `create_agent` (`src/policylens/agent_lc.py`)
+
+## Next
+
+Add tracing and cost logging to every model call.
 
 ## Next
 
