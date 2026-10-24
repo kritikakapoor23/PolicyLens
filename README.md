@@ -19,14 +19,17 @@ Insurance policies are long PDFs full of conditions: waiting periods, exclusions
 - Hand-written tool-calling loop with a calculator and a stub policy search (`src/policylens/agent_loop.py`)
 - Structured extraction with Pydantic validation and retry on invalid output (`src/policylens/structured.py`)
 - Temperature experiment: on a clear snippet, extraction gave identical output across 5 runs at temperature 0.0 and 1.0 (`evals/temperature_experiment.py`)
-- The same tool loop rebuilt with LangChain `create_agent` (`src/policylens/agent_lc.py`)
+- The same tool loop rebuilt with LangChain `create_agent`, with middleware that returns tool errors to the model instead of crashing (`src/policylens/agent_lc.py`)
 
 ## Next
 
 Add tracing and cost logging to every model call.
 
-## Next
+## Planned
 
+- Document ingestion and search (retrieval) to replace the stub policy search
+- An evaluation set measuring retrieval accuracy, answer faithfulness, cost and latency
+- The policy search and calculators exposed as MCP servers (Model Context Protocol), so any compatible agent can use them
 Load real policy documents and search them, replacing the stub policy search.
 
 ## Run it
@@ -39,4 +42,5 @@ uv run python -m policylens.llm
 uv run python -m policylens.agent_loop
 uv run python -m policylens.structured
 uv run python evals/temperature_experiment.py
+uv run python -m policylens.agent_lc
 ```
