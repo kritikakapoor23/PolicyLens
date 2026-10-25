@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from google import genai
 from google.genai import errors, types
 
+from policylens.cost_log import log_call
+
 MODEL = os.environ.get("POLICYLENS_MODEL", "gemini-3.5-flash-lite")
 
 TIMEOUT_MS = 60000
@@ -87,6 +89,7 @@ def main() -> None:
     prompt = "In one sentence, what is a health insurance waiting period?"
     try:
         r = stream_answer(prompt)
+        log_call("smoke", MODEL, r)
     except LLMError as exc:
         sys.exit(f"Error: {exc}")
     print(
