@@ -20,10 +20,13 @@ Insurance policies are long PDFs full of conditions: waiting periods, exclusions
 - Structured extraction with Pydantic validation and retry on invalid output (`src/policylens/structured.py`)
 - Temperature experiment: on a clear snippet, extraction gave identical output across 5 runs at temperature 0.0 and 1.0 (`evals/temperature_experiment.py`)
 - The same tool loop rebuilt with LangChain `create_agent`, with middleware that returns tool errors to the model instead of crashing (`src/policylens/agent_lc.py`)
+- Local cost and latency log: one JSON line per model call, plus a summary and unit tests (`src/policylens/cost_log.py`)
 
 ## Next
 
-Add tracing and cost logging to every model call.
+## Next
+
+Add tracing with Langfuse, then load real policy documents and search them.
 
 ## Planned
 
@@ -43,4 +46,6 @@ uv run python -m policylens.agent_loop
 uv run python -m policylens.structured
 uv run python evals/temperature_experiment.py
 uv run python -m policylens.agent_lc
+uv run python -m policylens.cost_log
+uv run pytest
 ```
