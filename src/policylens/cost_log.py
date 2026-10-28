@@ -6,7 +6,7 @@ from pathlib import Path
 LOG_PATH = Path("logs/llm_calls.jsonl")
 
 # PLACEHOLDER prices in USD per 1 million tokens. Replace with the official prices.
-PRICES = {"gemini-3.5-flash-lite": {"input": 0.0, "output": 0.0}}
+PRICES = {"gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50}}
 
 
 def estimate_cost_usd(model: str, prompt_tokens: int, output_tokens: int) -> float:
