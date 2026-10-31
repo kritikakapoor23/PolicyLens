@@ -21,12 +21,12 @@ Insurance policies are long PDFs full of conditions: waiting periods, exclusions
 - Temperature experiment: on a clear snippet, extraction gave identical output across 5 runs at temperature 0.0 and 1.0 (`evals/temperature_experiment.py`)
 - The same tool loop rebuilt with LangChain `create_agent`, with middleware that returns tool errors to the model instead of crashing (`src/policylens/agent_lc.py`)
 - Local cost and latency log: one JSON line per model call, plus a summary and unit tests (`src/policylens/cost_log.py`)
+- Optional Langfuse tracing for the LangChain agent, plus a local cost and latency log (`src/policylens/cost_log.py`)
 
 ## Next
 
-## Next
+Choose real public policy documents and write the first set of test questions, each with the page where the answer is found.
 
-Add tracing with Langfuse, then load real policy documents and search them.
 
 ## Planned
 
